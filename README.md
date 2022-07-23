@@ -128,13 +128,13 @@ Then update the `name` field in `package.json` to reflect your NPM package name 
 npm publish
 ```
 
-The `"prepublishOnly": "npm run build"` script in `package.json` will execute before publish occurs, ensuring the `build/` directory and the compiled component library exist.
+The `"prepublishOnly": "npm run build"` script in `package.json` will execute before publish occurs, ensuring the `lib/` directory and the compiled component library exist.
 
 ### Hosting via GitHub
 
 I recommend you host the component library using NPM. However, if you don't want to use NPM, you can use GitHub to host it instead.
 
-You'll need to remove `build/` from `.gitignore`, build the component library (`npm run build`), add, commit and push the contents of `build`. [See this branch for an example.](https://github.com/HarveyD/react-component-library/tree/host-via-github)
+You'll need to remove `lib/` from `.gitignore`, build the component library (`npm run build`), add, commit and push the contents of `lib`. [See this branch for an example.](https://github.com/HarveyD/react-component-library/tree/host-via-github)
 
 You can then install your library into other projects by running:
 
@@ -172,12 +172,12 @@ export default App;
 
 ### Using Component Library SASS Variables
 
-I've found that it's helpful to export SASS variables to projects consuming the library. As such, I've added the `rollup-plugin-copy` NPM package and used it to copy the [`src/typography.scss`](src/typography.scss) and [`variables.scss`](src/variables.scss) into the `build` directory as part of the Rollup bundle process. This allows you to use these variables in your projects consuming the component library.
+I've found that it's helpful to export SASS variables to projects consuming the library. As such, I've added the `rollup-plugin-copy` NPM package and used it to copy the [`src/typography.scss`](src/typography.scss) and [`variables.scss`](src/variables.scss) into the `lib` directory as part of the Rollup bundle process. This allows you to use these variables in your projects consuming the component library.
 
 For example, let's say you installed `harvey-component-library` into your project. To use the exported variables/mixins, in a SASS file you would do the following:
 
 ```Sass
-@import '~harvey-component-library/build/typography';
+@import '~@respaces/respaces-ui/lib/typography';
 
 .example-container {
     @include heading;

@@ -28,17 +28,30 @@ export default {
     }),
     commonjs(),
     typescript({ useTsconfigDeclarationDir: true }),
-    postcss(),
+    postcss({
+      modules: true,
+      inject: true,
+      // extract: true, // uncomment if you want separate css file
+      // minimize: true,
+      use: [
+        [
+          "sass",
+          {
+            includePaths: ["./src/", "./node_modules"]
+          },
+        ]
+      ]
+    }),
     copy({
       targets: [
         {
           src: "src/variables.scss",
-          dest: "build",
+          dest: "lib",
           rename: "variables.scss"
         },
         {
           src: "src/typography.scss",
-          dest: "build",
+          dest: "lib",
           rename: "typography.scss"
         }
       ]
